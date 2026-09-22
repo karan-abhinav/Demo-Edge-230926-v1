@@ -1,0 +1,20 @@
+{
+  "name": "edge-ai-training",
+  "owner": {
+    "name": "Dayananda Sagar University - ECE",
+    "email": "training@example.edu"
+  },
+  "metadata": {
+    "description": "Plugins for the Claude Code extension-layer training",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "edge-ai-toolkit",
+      "description": "Review, test and guardrail workflow for embedded telemetry Python projects.",
+      "source": "./plugins/edge-ai-toolkit",
+      "category": "development",
+      "tags": ["python", "review", "guardrails", "telemetry"]
+    }
+  ]
+}

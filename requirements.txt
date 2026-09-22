@@ -1,0 +1,6 @@
+# Core project (labs run fine with just these)
+pytest>=8.0
+ruff>=0.6
+
+# Only needed for Lab B2 (custom MCP server)
+# pip install "mcp[cli]>=1.2"

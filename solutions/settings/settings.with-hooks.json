@@ -1,0 +1,78 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(sqlite3 data/telemetry.db:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/solutions/hooks/session_context.py"],
+            "statusMessage": "Reading repository state"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/solutions/hooks/protect_paths.py"],
+            "statusMessage": "Checking write guardrail"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/solutions/hooks/format_python.py"],
+            "timeout": 30,
+            "statusMessage": "Formatting with ruff"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/solutions/hooks/pytest_gate.py"],
+            "timeout": 120,
+            "statusMessage": "Running the test gate"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "^telemetry-reviewer$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh",
+            "args": ["-c", "echo \"reviewer finished $(date -Iseconds)\" >> .claude/agent.log"]
+          }
+        ]
+      }
+    ]
+  }
+}

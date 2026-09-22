@@ -1,0 +1,19 @@
+[project]
+name = "edge-telemetry"
+version = "0.3.0"
+description = "Training sandbox for the Claude Code extension-layer labs"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "SIM"]

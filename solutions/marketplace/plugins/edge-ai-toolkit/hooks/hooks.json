@@ -1,0 +1,32 @@
+{
+  "description": "Formatting on edit, and a write guard over fixture data",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/format_python.py"],
+            "timeout": 30,
+            "statusMessage": "edge-ai-toolkit: formatting"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/protect_paths.py"],
+            "statusMessage": "edge-ai-toolkit: write guard"
+          }
+        ]
+      }
+    ]
+  }
+}

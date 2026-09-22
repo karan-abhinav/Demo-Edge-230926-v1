@@ -1,0 +1,12 @@
+{
+  "name": "edge-ai-toolkit",
+  "description": "Review, test and guardrail workflow for embedded telemetry Python projects. Bundles three subagents, two skills, the formatting and path-guard hooks, and a read-only telemetry MCP server.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dayananda Sagar University - ECE",
+    "email": "training@example.edu"
+  },
+  "homepage": "https://example.edu/claude-code-training",
+  "license": "MIT",
+  "keywords": ["python", "telemetry", "edge-ai", "code-review", "guardrails"]
+}
