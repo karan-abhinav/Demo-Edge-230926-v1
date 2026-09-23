@@ -1,6 +1,6 @@
 """Windowed feature extraction over a run sequence."""
 
-from statistics import mean, pstdev
+from statistics import mean, median, pstdev
 from typing import Dict, List, Sequence
 
 
@@ -42,3 +42,11 @@ def summarize(runs: List[Dict[str, object]], field: str) -> Dict[str, float]:
         "mean": mean(values),
         "stdev": pstdev(values),
     }
+
+
+def median_temp(runs: List[Dict[str, object]]) -> float:
+    """Median `temp_c` across a set of runs, or 0.0 when there are none."""
+    temps = [float(r["temp_c"]) for r in runs]
+    if not temps:
+        return 0.0
+    return median(temps)
