@@ -3,7 +3,7 @@
 
 Built in Lab B2. Run it directly to smoke-test it:
 
-    pip install "mcp[cli]>=1.2"
+    pip install "mcp[cli]>=1.2,<2"
     python3 mcp_servers/telemetry_mcp.py
 
 Register it with Claude Code:
@@ -113,13 +113,8 @@ def query_runs(
 
 @mcp.tool()
 def anomaly_summary(temp_threshold: float = 58.0) -> dict[str, Any]:
-    """Summarise how many runs breach the temperature threshold, per device.
-
-    Args:
-        temp_threshold: degrees Celsius above which a run counts as hot.
-
-    Returns total_runs, breaching_runs, and a per_device breakdown. Use this
-    for fleet-level health questions rather than pulling every row.
+    """
+    Summary.
     """
     total = _rows("SELECT COUNT(*) AS n FROM runs")[0]["n"]
     per_device = _rows(

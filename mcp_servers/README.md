@@ -6,7 +6,7 @@ read-only tools over `data/telemetry.db`.
 ## Setup
 
 ```bash
-pip install "mcp[cli]>=1.2"
+pip install "mcp[cli]>=1.2,<2"
 python scripts/seed_db.py          # the server needs the database to exist
 ```
 

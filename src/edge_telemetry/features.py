@@ -1,6 +1,6 @@
 """Windowed feature extraction over a run sequence."""
 
-from statistics import mean, median, pstdev
+from statistics import mean, median, pstdev, quantiles
 from typing import Dict, List, Sequence
 
 
@@ -50,3 +50,13 @@ def median_temp(runs: List[Dict[str, object]]) -> float:
     if not temps:
         return 0.0
     return median(temps)
+
+
+def p95_vibration(runs: List[Dict[str, object]]) -> float:
+    """95th-percentile `vibration_g` (linear interpolation), or 0.0 when there are no runs."""
+    values = [float(r["vibration_g"]) for r in runs]
+    if not values:
+        return 0.0
+    if len(values) == 1:
+        return values[0]
+    return quantiles(values, n=100, method="inclusive")[94]
