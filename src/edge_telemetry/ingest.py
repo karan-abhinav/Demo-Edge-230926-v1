@@ -1,7 +1,6 @@
 """Load raw sensor runs from CSV into plain dictionaries."""
 
 import csv
-import os
 from pathlib import Path
 from typing import Dict, Iterator, List
 
@@ -11,11 +10,12 @@ NUMERIC_FIELDS = ("temp_c", "vibration_g", "current_a", "rpm")
 
 
 def _coerce(row: Dict[str, str]) -> Dict[str, object]:
+    """Copy a CSV row with numeric fields cast to float, using 0.0 for unparseable values."""
     out: Dict[str, object] = dict(row)
     for field in NUMERIC_FIELDS:
         try:
             out[field] = float(row[field])
-        except:
+        except (KeyError, TypeError, ValueError):
             out[field] = 0.0
     return out
 

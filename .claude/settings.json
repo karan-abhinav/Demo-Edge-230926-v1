@@ -7,5 +7,34 @@
       "Bash(git diff:*)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/format_python.py"],
+            "timeout": 30,
+            "statusMessage": "Formatting with ruff"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+    {
+      "matcher": "Edit|Write|NotebookEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python3",
+          "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/protect_paths.py"],
+          "statusMessage": "Checking write guardrail"
+        }
+      ]
+    }
+  ]
   }
 }

@@ -15,7 +15,7 @@ def test_zscores_handle_constant_input():
 
 def test_summarize_reports_counts():
     stats = summarize(load_runs(), "temp_c")
-    assert stats["count"] == 240
+    assert stats["count"] == 241
     assert stats["min"] < stats["mean"] < stats["max"]
 
 

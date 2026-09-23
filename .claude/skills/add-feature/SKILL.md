@@ -15,7 +15,7 @@ Add the test to `tests/test_features.py`, matching the tests already there: plai
 
 - a small hand-computed input, such as `[{"temp_c": 1.0}, {"temp_c": 3.0}]`
 - the empty-input case (existing functions return `0.0` or an empty structure; they don't raise)
-- one sanity check against the real fixture through `load_runs()` (240 runs)
+- one sanity check against the real fixture through `load_runs()` (241 runs)
 
 Run `python -m pytest -q tests/test_features.py` and confirm the new test fails.
 

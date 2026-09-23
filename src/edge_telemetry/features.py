@@ -60,3 +60,8 @@ def p95_vibration(runs: List[Dict[str, object]]) -> float:
     if len(values) == 1:
         return values[0]
     return quantiles(values, n=100, method="inclusive")[94]
+
+
+def peak_current(runs: List[Dict[str, object]]) -> float:
+    """Maximum `current_a` across a set of runs, or 0.0 when there are none."""
+    return max((float(r["current_a"]) for r in runs), default=0.0)

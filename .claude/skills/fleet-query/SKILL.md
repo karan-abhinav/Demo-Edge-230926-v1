@@ -10,13 +10,13 @@ Answer data questions from `data/telemetry.db` without ever writing to it.
 
 ## Schema
 
-Table `runs` (240 rows, 4 devices × 60 runs):
+Table `runs` (241 rows: 4 devices × 60 runs, plus 1 uno-q-04 run):
 
 | column | type | notes |
 |---|---|---|
 | run_id | TEXT PK | `R0001`… |
 | timestamp | TEXT | ISO 8601 |
-| device_id | TEXT | `rpi5-01`, `uno-q-01`, `uno-q-02`, `uno-q-03` |
+| device_id | TEXT | `rpi5-01`, `uno-q-01`, `uno-q-02`, `uno-q-03`, `uno-q-04` |
 | temp_c | REAL | °C |
 | vibration_g | REAL | g |
 | current_a | REAL | A |

@@ -3,7 +3,7 @@ from edge_telemetry.ingest import device_ids, load_runs
 
 def test_load_runs_returns_records():
     runs = load_runs()
-    assert len(runs) == 240
+    assert len(runs) == 241
     assert set(runs[0]) >= {"run_id", "device_id", "temp_c", "label"}
 
 
